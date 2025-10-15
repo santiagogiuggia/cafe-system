@@ -1,6 +1,7 @@
 // admin.js
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://127.0.0.1:8000';
+    // Ejemplo
+const API_URL = 'https://cafe-system-7nhg.onrender.com';
     
     // Selectores del DOM
     const tableBody = document.getElementById('product-table-body');

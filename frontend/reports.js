@@ -1,6 +1,6 @@
 // reports.js
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://127.0.0.1:8000';
+    const API_URL = 'https://cafe-system-7nhg.onrender.com';
 
     // Elementos del DOM
     const totalRevenueEl = document.getElementById('total-revenue');

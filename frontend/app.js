@@ -1,7 +1,8 @@
 // app.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- URL de nuestra API Backend ---
-    const API_URL = 'http://127.0.0.1:8000';
+    // Ejemplo
+const API_URL = 'https://cafe-system-7nhg.onrender.com';
 
     // --- ESTADO DE LA APLICACIÓN ---
     let menuData = []; // Ahora empieza vacío y se llenará desde la API
