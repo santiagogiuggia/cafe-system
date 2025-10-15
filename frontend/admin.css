@@ -1,0 +1,121 @@
+/* admin.css */
+:root {
+    --primary-color: #6D4C41;
+    --secondary-color: #f5f5f5;
+    --accent-color: #FFC107;
+    --text-color: #333;
+    --white-color: #fff;
+    --danger-color: #d9534f;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: var(--primary-color);
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.8; }
+.btn-primary { background-color: var(--primary-color); color: var(--white-color); }
+.btn-secondary { background-color: #ccc; color: var(--text-color); }
+.btn-danger { background-color: var(--danger-color); color: var(--white-color); }
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.product-table th, .product-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.product-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+}
+
+.product-table td .btn {
+    margin-right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
