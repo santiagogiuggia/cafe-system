@@ -32,7 +32,7 @@ origins = [
     "http://localhost:8000",
     "http://127.0.0.1:5500",
     "null",
-    "cafe-system-orcin.vercel.app",
+    "https://cafe-system-ocih.vercel.app",
 ]
 
 app.add_middleware(
