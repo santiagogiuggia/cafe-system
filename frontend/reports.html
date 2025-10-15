@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Cafe System</title>
+    <link rel="stylesheet" href="reports.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Panel de Reportes</h1>
+            <nav>
+                <a href="index.html">POS</a>
+                <a href="admin.html">Admin</a>
+            </nav>
+        </header>
+
+        <div class="filters">
+            <button data-range="today" class="btn active">Hoy</button>
+            <button data-range="week" class="btn">Esta Semana</button>
+            <button data-range="month" class="btn">Este Mes</button>
+            <div class="date-range-picker">
+                <input type="date" id="start-date">
+                <input type="date" id="end-date">
+                <button id="custom-range-btn" class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
+
+        <main class="dashboard">
+            <div class="card summary-card">
+                <h3>Ventas Totales</h3>
+                <p id="total-revenue">$ 0</p>
+            </div>
+            <div class="card summary-card">
+                <h3>Nº de Pedidos</h3>
+                <p id="total-sales">0</p>
+            </div>
+            <div class="card summary-card">
+                <h3>Ticket Promedio</h3>
+                <p id="average-ticket">$ 0</p>
+            </div>
+            <div class="card chart-card">
+                <h3>Top 5 Productos Vendidos</h3>
+                <canvas id="top-products-chart"></canvas>
+            </div>
+        </main>
+    </div>
+    <script src="reports.js"></script>
+</body>
+</html>

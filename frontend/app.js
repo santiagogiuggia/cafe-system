@@ -119,20 +119,56 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmPaymentBtn.disabled = true;
     }
 
-    function finalizeSale() {
-        console.log('--- VENTA FINALIZADA ---');
-        console.log(`Nº de Comanda: ${orderCounter}`);
-        console.log(`Método de Pago: ${selectedPaymentMethod}`);
-        console.log('Items:', currentOrder);
-        console.log(`TOTAL: $${currentTotal}`);
+   // app.js
+
+    // ... (código anterior) ...
+
+    // --- LÓGICA DE NEGOCIO ---
+    async function finalizeSale() {
+        // 1. Preparar los datos de la venta para enviar a la API
+        const saleData = {
+            total_amount: currentTotal,
+            payment_method: selectedPaymentMethod,
+            items: currentOrder.map(item => ({
+                product_name: item.name,
+                quantity: item.quantity,
+                unit_price: item.unitPrice
+            }))
+        };
+
+        // 2. Enviar la venta al backend para que la guarde
+        try {
+            const response = await fetch(`${API_URL}/sales/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(saleData)
+            });
+
+            if (!response.ok) {
+                // Si falla el guardado, informamos al usuario pero no detenemos el flujo
+                alert('Hubo un error al registrar la venta, pero el cobro fue exitoso.');
+            }
+
+            const savedSale = await response.json();
+            console.log('Venta guardada con éxito:', savedSale);
+
+        } catch (error) {
+            console.error('Error de red al guardar la venta:', error);
+            alert('Hubo un error de red al registrar la venta, pero el cobro fue exitoso.');
+        }
+
+        // 3. Mostrar confirmación al usuario y reiniciar la interfaz
         alert(`Venta #${orderCounter} finalizada con éxito por $${currentTotal.toLocaleString('es-AR')}.`);
+        
+        // Reiniciar para la próxima venta
         currentOrder = [];
         orderCounter++;
         orderNumberEl.textContent = `#${orderCounter}`;
         renderOrder();
         checkoutModal.style.display = 'none';
     }
-   // app.js
+
+    // ... (resto del código) ...
 
 // ... (todo el código anterior de app.js hasta los event listeners) ...
 

@@ -1,0 +1,17 @@
+/* reports.css */
+/* (Puedes usar una base similar a admin.css y añadir esto) */
+body { font-family: sans-serif; background-color: #f5f5f5; margin: 0; }
+.container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+header h1 { color: #6D4C41; }
+nav a { margin-left: 1rem; text-decoration: none; color: #333; }
+.filters { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: center; }
+.btn { padding: 0.6rem 1.2rem; border: 1px solid #ccc; background-color: white; border-radius: 8px; cursor: pointer; }
+.btn.active { background-color: #6D4C41; color: white; border-color: #6D4C41; }
+.btn-primary { background-color: #6D4C41; color: white; border: none; }
+.date-range-picker { margin-left: auto; display: flex; gap: 0.5rem; }
+.dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.card { background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.summary-card h3 { margin-top: 0; color: #555; }
+.summary-card p { font-size: 2.5rem; font-weight: bold; color: #6D4C41; margin: 0.5rem 0 0; }
+.chart-card { grid-column: 1 / -1; } /* Ocupa todo el ancho */

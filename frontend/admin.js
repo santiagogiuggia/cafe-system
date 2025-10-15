@@ -118,26 +118,86 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         }
     };
+    // admin.js
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (código anterior) ...
+    const mpTokenInput = document.getElementById('mp-token');
+    const saveTokenBtn = document.getElementById('save-token-btn');
+
+    // Cargar el token actual (si existe)
+    const loadToken = async () => {
+        try {
+            const response = await fetch(`${API_URL}/settings/mp_access_token`);
+            const data = await response.json();
+            if (data.value) {
+                mpTokenInput.value = data.value;
+            }
+        } catch (error) { console.error('No se pudo cargar el token.'); }
+    };
+
+    // Guardar el token
+    const saveToken = async () => {
+        const token = mpTokenInput.value;
+        if (!token) {
+            alert('El token no puede estar vacío.');
+            return;
+        }
+        try {
+            await fetch(`${API_URL}/settings/mp_access_token`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: token })
+            });
+            alert('¡Token de Mercado Pago guardado con éxito!');
+        } catch (error) {
+            alert('Error al guardar el token.');
+        }
+    };
+
+    // Event Listeners
+    saveTokenBtn.addEventListener('click', saveToken);
+    
+    // Carga inicial
+    loadProducts();
+    loadToken(); // Cargar token al iniciar
+});
     
     // Event Listeners
     addProductBtn.addEventListener('click', () => openModal());
     cancelBtn.addEventListener('click', closeModal);
     form.addEventListener('submit', saveProduct);
 
+   // admin.js
+
+// ... (código anterior)
+
     tableBody.addEventListener('click', async (event) => {
         const target = event.target;
-        const id = target.dataset.id;
+        // Busca el botón más cercano que tenga un data-id
+        const button = target.closest('button[data-id]');
+        if (!button) return;
 
-        if (target.classList.contains('edit-btn')) {
-            // Cargar datos del producto y abrir modal
-            const response = await fetch(`${API_URL}/products/${id}`);
-            const product = await response.json();
-            openModal(product);
-        } else if (target.classList.contains('delete-btn')) {
+        const id = button.dataset.id;
+
+        if (button.classList.contains('edit-btn')) {
+            try {
+                // 1. Llama a la API para obtener los datos más recientes del producto
+                const response = await fetch(`${API_URL}/products/${id}`);
+                if (!response.ok) throw new Error('Producto no encontrado.');
+                const product = await response.json();
+                
+                // 2. Abre el modal con los datos cargados
+                openModal(product);
+            } catch (error) {
+                console.error("Error al cargar producto para editar:", error);
+                alert("No se pudo cargar la información del producto.");
+            }
+        } else if (button.classList.contains('delete-btn')) {
             deleteProduct(id);
         }
     });
 
+// ... (resto del código)
     // Carga inicial
     loadProducts();
 });
