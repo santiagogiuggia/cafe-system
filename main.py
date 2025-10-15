@@ -33,6 +33,7 @@ origins = [
     "http://127.0.0.1:5500",
     "null",
     "https://cafe-system-ocih.vercel.app",
+    "https://cafe-system-orcin.vercel.app", # <-- ¡AÑADE ESTA LÍNEA!
 ]
 
 app.add_middleware(
