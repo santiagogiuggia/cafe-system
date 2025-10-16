@@ -324,13 +324,3 @@ closeQrModalBtn.addEventListener('click', () => {
 
     init();
 });
-// app.js (añadir al final)
-
-    // --- Event Listener para el botón de Logout ---
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            // La función logout() está definida en auth.js
-            logout(); 
-        });
-    }
