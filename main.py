@@ -30,6 +30,53 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(
     # ... (configuración de la app)
 )
+# main.py
+
+# ... (importaciones)
+
+models.Base.metadata.create_all(bind=engine)
+
+app = FastAPI(
+    # ... (configuración de la app)
+)
+
+# --- ¡AÑADE ESTE BLOQUE DE CÓDIGO! ---
+# Poblar la base de datos al iniciar si está vacía
+@app.on_event("startup")
+def populate_db_on_startup():
+    db = SessionLocal()
+    # Revisa si la tabla de productos tiene algún registro
+    product_count = db.query(models.Product).count()
+    if product_count == 0:
+        print("La base de datos de productos está vacía. Poblando con datos iniciales...")
+        initial_products = [
+            {"name": "Expresso", "price": 2800, "category": "Cafés", "description": "Pocillo"},
+            {"name": "Latte", "price": 3300, "category": "Café c/ Leche", "description": "Jarro 6 OZ"},
+            {"name": "Medialuna", "price": 900, "category": "Acompañamientos", "description": ""},
+            {"name": "Jugo de Naranja", "price": 2900, "category": "Bebidas Frías", "description": ""},
+            {"name": "Croissant", "price": 1900, "category": "Acompañamientos", "description": ""},
+        ]
+        
+        for item in initial_products:
+            # Convierte la categoría de string a nuestro Enum
+            category_enum = models.ProductCategory(item["category"])
+            db_product = models.Product(
+                name=item["name"],
+                price=item["price"],
+                category=category_enum,
+                description=item["description"]
+            )
+            db.add(db_product)
+        
+        db.commit()
+        print("¡Base de datos poblada!")
+    else:
+        print(f"La base de datos ya tiene {product_count} productos. No se necesita poblar.")
+    db.close()
+# --- FIN DEL NUEVO BLOQUE ---
+
+
+# ... (el resto de tu código, CORS, endpoints, etc.)
 
 # --- ¡NUEVO BLOQUE DE CÓDIGO! ---
 # Poblar la base de datos al iniciar si está vacía
