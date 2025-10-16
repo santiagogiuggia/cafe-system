@@ -2,7 +2,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 from models import ProductCategory
-from datetime import datetime # <--- 1. ¡NUEVA IMPORTACIÓN!
+from datetime import datetime
 
 # --- Esquemas de Producto ---
 class ProductBase(BaseModel):
@@ -14,7 +14,7 @@ class ProductBase(BaseModel):
 class ProductCreate(ProductBase):
     pass
 
-class Product(ProductBase):
+class Product(ProductBase): # <--- Esta es la clase que faltaba
     id: int
     class Config:
         from_attributes = True
@@ -32,9 +32,27 @@ class SaleCreate(BaseModel):
 
 class Sale(SaleCreate):
     id: int
-    # --- 2. CORRECCIÓN AQUÍ ---
-    # Cambiamos 'str' por 'datetime' para que coincida con el modelo de la base de datos.
     created_at: datetime
-    
     class Config:
         from_attributes = True
+
+# --- Esquemas de Usuario ---
+class UserBase(BaseModel):
+    email: str
+
+class UserCreate(UserBase):
+    password: str
+
+class User(UserBase):
+    id: int
+    is_active: bool
+    class Config:
+        from_attributes = True
+
+# --- Esquemas para Token ---
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: Optional[str] = None

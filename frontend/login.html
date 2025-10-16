@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Cafe System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Bienvenido a Cafe System</h1>
+            <p>Por favor, inicia sesión para continuar</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <p id="error-message" class="error-message"></p>
+                <button type="submit" class="btn-login">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -389,3 +389,20 @@ header h1 {
         gap: 1rem;
     }
 }
+/* style.css (añadir al final) */
+.btn-logout {
+    background-color: #f44336; /* Color rojo para logout */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit; /* Heredar la fuente del resto de la nav */
+    font-size: inherit; /* Heredar el tamaño de fuente */
+    transition: opacity 0.2s;
+}
+
+.btn-logout:hover {
+    opacity: 0.8;
+}

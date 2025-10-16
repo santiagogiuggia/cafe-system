@@ -2,7 +2,7 @@
 import requests
 import json
 
-# ¡IMPORTANTE! Cambia la URL para que apunte a tu servidor en producción
+# ¡IMPORTANTE! Cambia la URL para que apunte a tu servmiridor en producción
 API_URL = "https://cafe-system-7nhg.onrender.com/products/"
 
 # Lista completa del menú de Zibá (puedes añadir todos los que faltan aquí)
